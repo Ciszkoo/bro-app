@@ -1,3 +1,7 @@
+# volumes excluded for now
+import
+keycloak-db
+
 *.class
 *.log
 
