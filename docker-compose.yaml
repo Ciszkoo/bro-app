@@ -30,3 +30,11 @@ services:
       - 8080:8080
     depends_on:
       - keycloak-db
+
+  bro-backend:
+    container_name: bro-backend
+    image: bro-backend:0.1
+    ports:
+      - 3000:3000
+    depends_on:
+      - keycloak
