@@ -31,10 +31,10 @@ services:
     depends_on:
       - keycloak-db
 
-  # bro-backend:
-  #   container_name: bro-backend
-  #   image: bro-backend:0.1
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - keycloak
+  mongo:
+    container_name: mongo
+    image: mongo:6.0
+    volumes:
+      - ./mongo-data:/data/db
+    ports:
+      - 27017:27017
