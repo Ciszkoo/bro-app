@@ -27,7 +27,7 @@ object AuthService {
 
   def jwtVerifyAndProtect(token: String, role: String = "normal-user"): Boolean = decodeJwt(token) match {
     case Right(value) if value.resource_access.bro_backend.roles.contains(role) => true
-    case _                                                                        => false
+    case _                                                                      => false
   }
 
   def decodeJwt(token: String): Either[String, Token] = {

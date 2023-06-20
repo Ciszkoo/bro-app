@@ -1,16 +1,11 @@
 package ciszko
 
 import zio._
-import zio.Task
 import zio.http._
-import zio.http.HttpAppMiddleware.{ bearerAuth, cors }
+import zio.http.HttpAppMiddleware.cors
 import zio.http.internal.middlewares.Cors.CorsConfig
 import zio.http.Header.{ AccessControlAllowMethods, AccessControlAllowOrigin, Origin }
-import ciszko.routes.UserPublicRoutes
-import org.mongodb.scala._
-import zio.json._
-import ciszko.routes.PublicRoutes
-import ciszko.routes.AdminOnlyRoutes
+import ciszko.routes.{ AdminOnlyRoutes, PublicRoutes, UserPublicRoutes }
 
 object Bro extends ZIOAppDefault {
 

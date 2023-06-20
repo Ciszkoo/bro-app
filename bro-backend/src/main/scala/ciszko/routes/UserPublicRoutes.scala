@@ -1,7 +1,6 @@
 package ciszko.routes
 
 import zio._
-import zio.Console._
 import zio.http._
 import zio.json._
 import zio.http.HttpAppMiddleware.bearerAuth
@@ -12,14 +11,14 @@ import org.mongodb.scala._
 
 object UserPublicRoutes {
 
-  val app = Http.collectZIO[Request] { 
-    
+  val app = Http.collectZIO[Request] {
+
     case request @ Method.POST -> Root / "posts" => for {
-        body        <- request.body.asString
-        partialPost <- ZIO.fromEither(body.fromJson[PartialPost])
-        post        <- ZIO.succeed(partialPost.toPost)
-        _           <- ZIO.fromFuture(_ => collection.insertOne(Document(post.toJson)).toFuture())
-     } yield Response.ok
+      body        <- request.body.asString
+      partialPost <- ZIO.fromEither(body.fromJson[PartialPost])
+      post        <- ZIO.succeed(partialPost.toPost)
+      _           <- ZIO.fromFuture(_ => collection.insertOne(Document(post.toJson)).toFuture())
+    } yield Response.ok
 
     case Method.GET -> Root / "posts" / "pending" / int(page) => for {
       documents <- ZIO.fromFuture(_ =>
