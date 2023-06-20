@@ -1,7 +1,8 @@
 # volumes excluded for now
 import
-keycloak-db
-mongo-data
+# keycloak-db
+# mongo-data
+backend-image-setup.sh
 
 *.class
 *.log
