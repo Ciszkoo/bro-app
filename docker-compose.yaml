@@ -35,5 +35,7 @@ services:
     volumes:
       - ./mongo-data:/data/db
       - ./init.js:/docker-entrypoint-initdb.d/init.js
+    environment:
+      - MONGO_INITDB_DATABASE=brodb
     ports:
       - 27017:27017

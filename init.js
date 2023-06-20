@@ -1,4 +1,5 @@
 db = db.getSiblingDB("brodb");
+db.createCollection("posts");
 
 db.posts.insertMany([
   {
