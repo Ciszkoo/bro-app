@@ -1,6 +1,7 @@
 package ciszko.routes
 
 import zio._
+import zio.Console._
 import zio.http._
 import ciszko.Mongo._
 import org.mongodb.scala._
@@ -12,7 +13,7 @@ object AdminOnlyRoutes {
 
   val app = Http.collectZIO[Request] {
 
-    case Method.PATCH -> Root / "posts" / id => for {
+    case Method.PATCH -> Root / "posts" / "approve" / id => for {
         dbResponse <- ZIO.fromFuture(_ =>
           collection
             .updateOne(

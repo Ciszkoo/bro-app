@@ -1,6 +1,7 @@
 package ciszko.routes
 
 import zio._
+import zio.Console._
 import zio.http._
 import zio.json._
 import zio.http.HttpAppMiddleware.bearerAuth
@@ -25,12 +26,11 @@ object UserPublicRoutes {
         collection
           .find(Document("status" -> "pending"))
           .sort(Document("createdAt" -> -1))
-          .skip(0 + page * 10)
+          .skip(0 + (page - 1) * 10)
           .limit(10)
           .toFuture()
       )
-      response <- ZIO.succeed(Response.json(documents.map(_.toJson()).mkString("[", ",", "]")))
-    } yield response
+    } yield Response.json(documents.map(_.toJson()).mkString("[", ",", "]"))
 
   } @@ (bearerAuth(jwtVerifyAndProtect(_)) ++ RequestHandlerMiddlewares.debug)
 

@@ -13,7 +13,7 @@ object PublicRoutes {
         collection
           .find(Document("status" -> "approved"))
           .sort(Document("createdAt" -> -1))
-          .skip(0 + page * 10)
+          .skip(0 + (page - 1) * 10)
           .limit(10)
           .toFuture()
       )
