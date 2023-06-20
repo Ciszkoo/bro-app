@@ -30,55 +30,57 @@ const RightPanel = (props: RightPanelProps) => {
       )}
       {isAuthenticated && (
         <>
-          <div className="self-center m-auto flex flex-col gap-5">
+          <div className="self-center m-auto flex flex-col gap-5 items-center">
             <div className="py-4 px-10 text-2xl break-words">
               {accessTokenPayload.given_name} {accessTokenPayload.family_name}!
               Bro!
             </div>
-            <button
-              className="bg-sky-400 py-4 px-20 rounded-md shadow-md active:bg-sky-500 active:shadow-inner hover:bg-sky-300"
-              type="button"
-              onClick={props.handlePostsTypeApproved}
-            >
-              Approved posts
-            </button>
-            <button
-              className="bg-sky-400 py-4 px-20 rounded-md shadow-md active:bg-sky-500 active:shadow-inner hover:bg-sky-300"
-              type="button"
-              onClick={props.handlePostsTypePending}
-            >
-              Pending posts
-            </button>
-            <button
-              className="bg-sky-500 py-4 px-20 rounded-md shadow-md active:bg-sky-600 active:shadow-inner hover:bg-sky-400"
-              type="button"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-            {accessTokenPayload &&
-              accessTokenPayload.resource_access.bro_backend.roles.includes(
-                "admin-user"
-              ) && (
-                <>
-                  {!props.adminView && (
-                    <button
-                      className="bg-sky-600 self-end p-2 rounded-md shadow-md active:bg-sky-700 active:shadow-inner hover:bg-sky-500"
-                      onClick={props.handleAdminViewChange}
-                    >
-                      Toggle admin view
-                    </button>
-                  )}
-                  {props.adminView && (
-                    <button
-                      className="bg-sky-600 self-end p-2 rounded-md shadow-md active:bg-sky-700 active:shadow-inner hover:bg-sky-500"
-                      onClick={props.handleAdminViewChange}
-                    >
-                      Close admin view
-                    </button>
-                  )}
-                </>
-              )}
+            <div className="flex flex-col gap-4">
+              <button
+                className="bg-sky-400 py-4 px-20 rounded-md shadow-md active:bg-sky-500 active:shadow-inner hover:bg-sky-300"
+                type="button"
+                onClick={props.handlePostsTypeApproved}
+              >
+                Approved posts
+              </button>
+              <button
+                className="bg-sky-400 py-4 px-20 rounded-md shadow-md active:bg-sky-500 active:shadow-inner hover:bg-sky-300"
+                type="button"
+                onClick={props.handlePostsTypePending}
+              >
+                Pending posts
+              </button>
+              <button
+                className="bg-sky-500 py-4 px-20 rounded-md shadow-md active:bg-sky-600 active:shadow-inner hover:bg-sky-400"
+                type="button"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+              {accessTokenPayload &&
+                accessTokenPayload.resource_access.bro_backend.roles.includes(
+                  "admin-user"
+                ) && (
+                  <>
+                    {!props.adminView && (
+                      <button
+                        className="bg-sky-600 self-end p-2 rounded-md shadow-md active:bg-sky-700 active:shadow-inner hover:bg-sky-500"
+                        onClick={props.handleAdminViewChange}
+                      >
+                        Toggle admin view
+                      </button>
+                    )}
+                    {props.adminView && (
+                      <button
+                        className="bg-sky-600 self-end p-2 rounded-md shadow-md active:bg-sky-700 active:shadow-inner hover:bg-sky-500"
+                        onClick={props.handleAdminViewChange}
+                      >
+                        Close admin view
+                      </button>
+                    )}
+                  </>
+                )}
+            </div>
           </div>
         </>
       )}
